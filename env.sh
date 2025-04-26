@@ -1,0 +1,2 @@
+export BACK_END_PORT=8080
+export FRONT_END_PORT=3000
