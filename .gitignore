@@ -1,1 +1,2 @@
-*.logs
+back_end.logs
+front_end.logs
