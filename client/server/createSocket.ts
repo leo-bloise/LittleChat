@@ -1,12 +1,15 @@
 import { io, Socket } from "socket.io-client";
 
 export const createSocket = (username: string, onConnection: (socket: Socket) => void, onDisconnect: () => void, reconnection?: boolean) => {
+    const query = reconnection ? {
+        username,
+        reconnection
+    } : {
+        username
+    };
     const socket = io('http://localhost:8080', {
         transports: ['websocket'],
-        query: {
-            username,
-            reconnection
-        }
+        query
     });
     socket.on('connect', () => {
         onConnection(socket);

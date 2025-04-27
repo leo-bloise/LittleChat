@@ -4,6 +4,7 @@ import { IUserService } from "./user.service.interface";
 import { Model } from "mongoose";
 import { UserAlreadyExistsError } from "../errors/user-already-exists.error";
 import { Injectable } from "@nestjs/common";
+import { UserNotFoundError } from "../errors/user-not-found.error";
 
 @Injectable()
 export class UserService implements IUserService {
@@ -11,6 +12,15 @@ export class UserService implements IUserService {
         @InjectModel(User.name)
         private userModel: Model<User>,
     ) {}
+    async getUser(username: string): Promise<User> {
+        const user = await this.userModel.findOne({
+            username
+        })
+        if(user === null) {
+            throw new UserNotFoundError(username);
+        }
+        return user;
+    }
     async checkIfUsernameTaken(username: string): Promise<boolean> {
         const model = await this.userModel.exists({
             username

@@ -6,68 +6,40 @@ import { useSocket } from "@/contexts/SocketContext";
 import { HiOutlinePaperAirplane } from "react-icons/hi";
 import { FactoryMessageComponent } from "@/components/AbstractFactoryMessageComponent";
 import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
+
+type Message = {
+    message: string;
+    username: string;
+}
 
 export default function ChatPage() {
-    const { username, disconnect } = useSocket();
-    const messages = [
-        {
-            username: 'Teste 1',
-            message: 'Mensagem de alguem boladao'
-        },
-        {
-            username: 'Teste 2',
-            message: 'Mensagem de alguem boladao'
-        },
-        {
-            username: 'Teste 3',
-            message: 'Mensagem de alguem boladao'
-        },
-        {
-            username: 'Teste 1',
-            message: 'Mensagem de alguem boladao'
-        },
-        {
-            username: 'Teste 2',
-            message: 'Mensagem de alguem boladao'
-        },
-        {
-            username: 'Teste 3',
-            message: 'Mensagem de alguem boladao'
-        },
-        {
-            username: username as string,
-            message: 'Mensagem de alguem boladao'
-        },
-        {
-            username: username as string,
-            message: 'Mensagem de alguem boladao'
-        },
-        {
-            username: 'Teste 1',
-            message: 'Mensagem de alguem boladao'
-        },
-        {
-            username: 'Teste 2',
-            message: 'Mensagem de alguem boladao'
-        },
-        {
-            username: 'Teste 3',
-            message: 'Mensagem de alguem boladao'
-        },
-        {
-            username: username as string,
-            message: 'Mensagem de alguem boladao'
-        },
-        {
-            username: username as string,
-            message: 'Mensagem de alguem boladao'
-        },
-        {
-            username: username as string,
-            message: 'Mensagem de alguem boladao'
-        },
-    ]
+    const { username, disconnect, socket } = useSocket();
+    const [message, setMessage] = useState<string>('');
+    const [messages, setMessages] = useState<Message[]>([]);
     const router = useRouter();
+    const listener = (message: Message) => {
+        setMessages(old => [...old, message]);
+    }
+    const sendMessage = useCallback((message: string) => {
+        const messageModel: Message = {
+            message,
+            username: username!
+        }
+        socket?.emit('message', messageModel);
+        listener(messageModel);
+    }, [socket]);
+    useEffect(() => {        
+        if(!socket?.hasListeners('new_message')) {
+            socket?.on('new_message', (message: Message) => { 
+                console.log('here on message');       
+                setMessages(old => [...old, message]);
+            });
+        }
+        return () => {
+            socket?.off('new_message', listener)
+        }
+    }, []); 
     return <main className="h-[100%] p-4 flex flex-col">
         <div className="flex items-center gap-x-4">
             <Image
@@ -92,9 +64,15 @@ export default function ChatPage() {
                 return factory.createComponent(message);
             })}
         </div>
-        <form className="w-[95%] flex gap-x-4 p-4 justify-between">
-            <input type="text" className="bg-gray-300 w-[90%] p-4 outline-none rounded-lg" />
-            <button className="bg-gray-200 p-4 rounded-full">
+        <form onSubmit={event => {
+                event.preventDefault();
+                if(!message) return;
+                sendMessage(message);
+            }}  className="w-[95%] flex gap-x-4 p-4 justify-between">
+            <input value={message} onChange={event => {
+                setMessage(event.target.value)
+            }} type="text" placeholder="Type your message..." className="bg-gray-300 w-[90%] p-4 outline-none rounded-lg" />
+            <button type="submit" className="bg-gray-200 p-4 rounded-full active:opacity-50 transition-opacity">
                 <HiOutlinePaperAirplane size={32} className="rotate-90" />
             </button>
         </form>

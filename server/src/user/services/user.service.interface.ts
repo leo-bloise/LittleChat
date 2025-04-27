@@ -5,4 +5,5 @@ export interface IUserService {
     createUser(request: {
         username: string
     }): Promise<User>;
+    getUser(username: string): Promise<User>;
 }
