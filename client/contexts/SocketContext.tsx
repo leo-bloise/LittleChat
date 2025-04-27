@@ -46,6 +46,9 @@ function socketContextReducer(state: SocketContextParams, action: {
             }
         case 'disconnection':
             deleteFromLocalStorage('username');
+            if(state.socket && !state.socket.disconnected) {
+                state.socket!.disconnect();
+            }
             return {
                 ...state,
                 ...data
@@ -69,16 +72,30 @@ export function SockerContextProvider({ children }: { children: ReactNode }) {
                     success: false
                 };
             }
-            createSocket(username, (s) => onSocketConnect(s, username), onSocketDisconnect)
+            createSocket(username, (s) => onSocketConnect(s, username), () => {
+                dispatch({
+                    type: 'disconnection',
+                    data: {
+                        username: undefined,
+                        socket: undefined,
+                        loading: false
+                    }
+                })
+            })
             return {
                 message: 'connected!',
                 success: true
             };
         },
         disconnect: async () => {
-            console.log('calling disconnection')
-            if(!state.socket) return;
-            state.socket.disconnect();
+            dispatch({
+                type: 'disconnection',
+                data: {
+                    username: undefined,
+                    socket: undefined,
+                    loading: false
+                }
+            })
         },
         loading: true
     })
@@ -91,7 +108,10 @@ export function SockerContextProvider({ children }: { children: ReactNode }) {
         })
     }
     const onSocketConnect = useCallback((s: Socket, username: string) => {
-        console.log('connected to the chat!');
+        console.log('connected to the chat!', {
+            s,
+            username
+        });
         dispatch({
             type: 'connection',
             data: {
@@ -101,9 +121,6 @@ export function SockerContextProvider({ children }: { children: ReactNode }) {
             }
         })
     }, []);
-    const onSocketDisconnect = useCallback(() => {
-        state.disconnect();
-    }, [state.disconnect]);
 
     useRunOnce(() => {
         const username = retrieveFromLocalStorage('username')
@@ -111,7 +128,16 @@ export function SockerContextProvider({ children }: { children: ReactNode }) {
             toggleLoading();
             return;
         }
-        createSocket(username, (s) => onSocketConnect(s, username), onSocketDisconnect, true)
+        createSocket(username, (s) => onSocketConnect(s, username), () => {
+            dispatch({
+                type: 'disconnection',
+                data: {
+                    username: undefined,
+                    socket: undefined,
+                    loading: false
+                }
+            })
+        }, true)
     });
 
     return <SocketContext.Provider value={{
