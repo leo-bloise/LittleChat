@@ -7,4 +7,129 @@
    - Network:      http://192.168.0.13:3000
 
  ✓ Starting...
- ✓ Ready in 878ms
+ ✓ Ready in 915ms
+ ○ Compiling /chat ...
+ GET / 200 in 1668ms
+ ✓ Compiled /chat in 2.1s
+ GET /chat 200 in 54ms
+ ✓ Compiled /favicon.ico in 434ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 678ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 219ms
+ ✓ Compiled in 103ms
+ ✓ Compiled in 142ms
+ ✓ Compiled in 147ms
+ ✓ Compiled in 151ms
+ ✓ Compiled in 145ms
+ ✓ Compiled in 147ms
+ ✓ Compiled in 147ms
+ ✓ Compiled in 146ms
+ ✓ Compiled in 151ms
+ ✓ Compiled in 147ms
+ ✓ Compiled in 146ms
+ ✓ Compiled in 147ms
+ ✓ Compiled in 146ms
+ ✓ Compiled in 143ms
+ ✓ Compiled in 141ms
+ ✓ Compiled in 145ms
+ GET /chat 200 in 162ms
+ ✓ Compiled in 143ms
+ ✓ Compiled in 148ms
+ ✓ Compiled in 150ms
+ ✓ Compiled in 141ms
+ ✓ Compiled in 144ms
+ ✓ Compiled in 147ms
+ ✓ Compiled in 147ms
+ ✓ Compiled in 144ms
+ GET /chat 200 in 142ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 240ms
+ ✓ Compiled in 146ms
+ ✓ Compiled in 146ms
+ ✓ Compiled in 147ms
+ ✓ Compiled in 145ms
+ ✓ Compiled in 149ms
+ ✓ Compiled in 146ms
+ GET /chat 200 in 135ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 226ms
+ ✓ Compiled in 146ms
+ ✓ Compiled in 149ms
+ ✓ Compiled /chat in 11ms
+ GET /chat 200 in 116ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 219ms
+ ✓ Compiled in 144ms
+ ✓ Compiled in 150ms
+ ✓ Compiled in 151ms
+ ✓ Compiled in 150ms
+ ✓ Compiled in 142ms
+ ✓ Compiled in 146ms
+ ✓ Compiled in 143ms
+ ✓ Compiled in 147ms
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `ChatPage`. See https://react.dev/link/warning-keys for more information.
+ GET /chat 200 in 156ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 231ms
+ ✓ Compiled in 147ms
+ ✓ Compiled in 148ms
+ ✓ Compiled in 143ms
+ ✓ Compiled in 147ms
+ ✓ Compiled in 150ms
+ ✓ Compiled in 145ms
+ ✓ Compiled in 157ms
+ ✓ Compiled in 151ms
+ ✓ Compiled in 161ms
+ ✓ Compiled in 147ms
+ ✓ Compiled in 146ms
+ ✓ Compiled in 148ms
+ ✓ Compiled in 153ms
+ ✓ Compiled in 150ms
+ ✓ Compiled in 155ms
+ ✓ Compiled in 150ms
+ ✓ Compiled in 147ms
+ ✓ Compiled in 146ms
+ ✓ Compiled in 149ms
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `ChatPage`. See https://react.dev/link/warning-keys for more information.
+ GET /chat 200 in 134ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 228ms
+ ✓ Compiled in 156ms
+ ✓ Compiled in 146ms
+ ✓ Compiled in 154ms
+ ✓ Compiled in 156ms
+ ✓ Compiled in 157ms
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `ChatPage`. See https://react.dev/link/warning-keys for more information.
+ GET /chat 200 in 155ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 285ms
+ ✓ Compiled in 152ms
+ ✓ Compiled in 147ms
+ ✓ Compiled in 143ms
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `ChatPage`. See https://react.dev/link/warning-keys for more information.
+ GET /chat 200 in 145ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 253ms
+ ✓ Compiled in 155ms
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `ChatPage`. See https://react.dev/link/warning-keys for more information.
+ GET /chat 200 in 110ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 284ms
+ ✓ Compiled in 149ms
+ ✓ Compiled in 153ms
+ ✓ Compiled in 153ms
+ ✓ Compiled in 145ms
+ ✓ Compiled in 157ms
+ ✓ Compiled in 153ms
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `ChatPage`. See https://react.dev/link/warning-keys for more information.
+ GET /chat 200 in 156ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 242ms
+ ✓ Compiled in 154ms
+ ✓ Compiled in 153ms
+ ✓ Compiled in 156ms
+ ✓ Compiled in 152ms
+ ✓ Compiled in 159ms
+ ✓ Compiled in 149ms
