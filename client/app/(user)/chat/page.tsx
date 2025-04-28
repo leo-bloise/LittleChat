@@ -31,10 +31,7 @@ export default function ChatPage() {
     }, [socket]);
     useEffect(() => {        
         if(!socket?.hasListeners('new_message')) {
-            socket?.on('new_message', (message: Message) => { 
-                console.log('here on message');       
-                setMessages(old => [...old, message]);
-            });
+            socket?.on('new_message', listener);
         }
         return () => {
             socket?.off('new_message', listener)
